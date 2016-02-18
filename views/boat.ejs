@@ -38,7 +38,7 @@
           var arrimg = (rows1[i].image).split(";");
     %>
         <div class="shipdiv" onclick="window.location='/boatDetail?p=<%=rows1[i].id%>'">
-          <img class="attrimg" src="/img/pic/<%=arrimg[0]%>.jpg"></img>
+          <img class="attrimg" src="<%=imgurl+arrimg[0]%>.jpg"></img>
           <div class="shipdivtitle">
             <div class="shipleft"><%=rows1[i].txtShipName%></div>
             <div class="shipright">¥<%=rows1[i].price==0?"-":rows1[i].price%>/小时</div>

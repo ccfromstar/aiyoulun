@@ -14,7 +14,7 @@
 		var arrimg = (rows1[i].image).split(";");
 	%>
 			<div class="fundiv" onclick="window.location='/charteredboat?p=<%=i%>';">
-				<img class="attrimg" src="/img/pic/<%=arrimg[0]%>.jpg"></img>
+				<img class="attrimg" src="<%=imgurl+arrimg[0]%>.jpg"></img>
 				<div class="fundivtitle"><%=CONSTANT1[i]%></div>
 			</div>
 	<%}%>
@@ -32,7 +32,7 @@
 				var arrimg = (rows2[i].image).split(";");
 		%>
 			<div class="shipdiv" onclick="window.location='/boatDetail?p=<%=rows2[i].id%>'">
-				<img class="attrimg" src="/img/pic/<%=arrimg[0]%>.jpg"></img>
+				<img class="attrimg" src="<%=imgurl+arrimg[0]%>.jpg"></img>
 				<div class="shipdivtitle">
 					<div class="shipleft"><%=rows2[i].txtShipName%></div>
 					<div class="shipright">¥<%=rows2[i].price==0?"-":rows2[i].price%>/小时</div>

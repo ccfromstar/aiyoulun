@@ -26,7 +26,7 @@
 			<%if(parms[1]==2 && i ==2){%>
 				<%for(var j in rows1){%>
 					<div class="sitediv">
-						<div class="sitepic"><img src="/img/pic/<%=rows1[j].image%>.jpg"></div>
+						<div class="sitepic"><img src="<%=imgurl+rows1[j].image%>.jpg"></div>
 						<div class="siteright">
 							<div class="site_title"><%=rows1[j].name%></div>
 							<div class="site_main">
@@ -71,7 +71,7 @@
               			}
         			%>  
             		<div class="<%=_cla%>">
-                		<img src="/img/pic/<%=picarr[j]%>.jpg" class="caroupage" alt="" />
+                		<img src="<%=imgurl+picarr[j]%>.jpg" class="caroupage" alt="" />
             		</div>
         			<%
             		}

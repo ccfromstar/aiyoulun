@@ -1,4 +1,5 @@
 var mysql = require('./db');
+var settings = require('./settings');
 
 exports.index = function (req, res) {
 	var url = req.url;
@@ -6,7 +7,7 @@ exports.index = function (req, res) {
     var sql2 = "select * from ship order by rand()";
 	mysql.query(sql1,function (err, rows1) {
 		mysql.query(sql2,function (err, rows2) {
-			res.render('index',{url:url,rows1:rows1,rows2:rows2});
+			res.render('index',{url:url,rows1:rows1,rows2:rows2,imgurl:settings.imgurl});
 		});	
     });
 };
@@ -19,7 +20,7 @@ exports.services = function (req, res) {
 	mysql.query(sql1,function (err, rows1) {
 		mysql.query(sql2,function (err, rows2) {
 			mysql.query(sql0,function (err, rows0) {
-				res.render('services',{url:url,rows1:rows1,rows2:rows2,rows0:rows0});
+				res.render('services',{url:url,rows1:rows1,rows2:rows2,rows0:rows0,imgurl:settings.imgurl});
 			});		
 		});	
     });
@@ -31,7 +32,7 @@ exports.charteredboat = function (req, res) {
 	var sql0 = "select * from ship order by rand()";
 	mysql.query(sql1,function (err, rows1) {
 		mysql.query(sql0,function (err, rows0) {
-			res.render('charteredboat',{url:url,rows1:rows1,rows0:rows0});
+			res.render('charteredboat',{url:url,rows1:rows1,rows0:rows0,imgurl:settings.imgurl});
 		});
     });
 };
@@ -52,7 +53,7 @@ exports.boat = function (req, res) {
 	var sql0 = "select * from ship order by rand()";
     mysql.query(sql0,function (err, rows0) {
     	mysql.query(sql1,function (err, rows1) {
-			res.render('boat',{url:url,rows0:rows0,rows1:rows1});
+			res.render('boat',{url:url,rows0:rows0,rows1:rows1,imgurl:settings.imgurl});
 		});
 	});
 };
@@ -64,7 +65,7 @@ exports.boatDetail = function (req, res) {
 	var sql0 = "select * from ship order by rand()";
 	mysql.query(sql0,function (err, rows0) {
 		mysql.query(sql1,function (err, rows1) {
-			res.render('boatDetail',{url:url,rows0:rows0,rows1:rows1});
+			res.render('boatDetail',{url:url,rows0:rows0,rows1:rows1,imgurl:settings.imgurl});
 		});
 	});
 };
