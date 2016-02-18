@@ -1,0 +1,18 @@
+<div class="context_bottom">
+	<div class="context_bottomtitle">
+		<img src="/img/ship.png" class="icon" />精品游船推荐
+	</div>
+	<%for(var i in rows0){
+			if(i<4){
+				var arrimg = (rows0[i].image).split(";");
+		%>
+			<div class="shipdiv" onclick="window.location='/boatDetail?p=<%=rows0[i].id%>'">
+				<img class="attrimg" src="/img/pic/<%=arrimg[0]%>.jpg"></img>
+				<div class="shipdivtitle">
+					<div class="shipleft"><%=rows0[i].txtShipName%></div>
+					<div class="shipright">¥<%=rows0[i].price==0?"-":rows0[i].price%>/小时</div>
+				</div>	
+			</div>
+		<%	}
+	}%>
+</div>

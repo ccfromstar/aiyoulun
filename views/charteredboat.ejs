@@ -1,0 +1,77 @@
+<!--业务逻辑-->
+<%
+	var CONSTANT1 = "游船婚庆,商务会议,餐饮宴会,私人游艇".split(",");
+	var parms = url.split("?p=");
+%>
+<!--页面逻辑-->
+<% include header %>
+<% include headeradvstatic %>
+<div class="context">
+	<% include menu %>
+</div>
+<div class="contextpage">
+	<div class="pageleft">
+    <ul>
+      <%for(var i=0;i<4;i++){%>
+        <%if(parms[1]==i){%>
+          <li><a class="active"><%=CONSTANT1[i]%></a></li>
+        <%}else{%>
+          <li><a href="/charteredboat?p=<%=i%>"><%=CONSTANT1[i]%></a></li>
+        <%}%>
+      <%}%>
+    </ul>
+	</div>
+	<div  class="pageright">
+		<%for(var i=0;i<4;i++){%>
+				<%if(parms[1]==i){%>
+				<div class="content_title">
+					<div class="ct_left"><%=CONSTANT1[i]%></div>
+				</div>
+				<p class="content_main">
+						<%-rows1[i].description%>
+				</p>
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+   					<!-- 轮播（Carousel）指标 -->
+   					<ol class="carousel-indicators">
+      					<%var _cla;
+                var picarr = (rows1[i].image).split(";");
+        				for(var j=0;j<picarr.length;j++){
+             				_cla = j==0?"active":"";
+      					%>
+        					<li data-target="#myCarousel" data-slide-to="<%=j%>" class="<%=_cla%>"></li>
+      					<%}%>
+   					</ol>   
+   					<!-- 轮播（Carousel）项目 -->
+   					<div class="carousel-inner">
+        			<%
+            			for(var j=0;j<picarr.length;j++){
+              				var _cla = "item";
+              				if(j==0){
+                  				_cla = "item active";
+              				}else{
+                  				_cla = "item";
+              			}
+        			%>  
+            		<div class="<%=_cla%>">
+                		<img src="/img/pic/<%=picarr[j]%>.jpg" class="caroupage" alt="" />
+                		<!-- <div class="carousel-caption">
+                    		案例名字<%=j%>
+                		</div> -->
+            		</div>
+        			<%
+            		}
+        			%>
+   					</div>
+   					<!-- 轮播（Carousel）导航 -->
+   					<a class="carousel-control left" href="#myCarousel" 
+      					data-slide="prev"><img class="arrowpage" src="/img/arrow-left.gif" /></a>
+   					<a class="carousel-control right" href="#myCarousel" 
+      					data-slide="next"><img class="arrowpage" src="/img/arrow-right.gif" /></a>
+					</div>
+					<%}%>
+		<%}%>
+	</div>
+	<div class="clearboth"></div>
+</div>
+<% include recommendation %>
+<% include footer %>

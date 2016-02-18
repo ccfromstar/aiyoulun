@@ -1,0 +1,34 @@
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+   <!-- 轮播（Carousel）指标 -->
+   <ol class="carousel-indicators">
+      <%var _cla;
+        for(var i=0;i<5;i++){
+             _cla = i==0?"active":"";
+      %>
+        <li data-target="#myCarousel" data-slide-to="<%=i%>" class="<%=_cla%>"></li>
+      <%}%>
+   </ol>   
+   <!-- 轮播（Carousel）项目 -->
+   <div class="carousel-inner">
+        <%
+            for(var i=0;i<5;i++){
+              var _cla = "item";
+              if(i==0){
+                  _cla = "item active";
+              }else{
+                  _cla = "item";
+              }
+        %>  
+            <div class="<%=_cla%>">
+                <img src="/img/top<%=(i+1)%>.jpg" class="carou" alt="" />
+            </div>
+        <%
+            }
+        %>
+   </div>
+   <!-- 轮播（Carousel）导航 -->
+   <a class="carousel-control left" href="#myCarousel" 
+      data-slide="prev"><img class="arrow" src="/img/arrow-left.gif" /></a>
+   <a class="carousel-control right" href="#myCarousel" 
+      data-slide="next"><img class="arrow" src="/img/arrow-right.gif" /></a>
+</div>

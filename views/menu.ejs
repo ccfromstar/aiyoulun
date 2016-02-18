@@ -1,0 +1,29 @@
+<!--业务逻辑-->
+<%
+	var parms = url.split("?p=");
+%>
+<!--页面逻辑-->
+<div class="menus" >
+	<ul>
+		<%if(parms[0]=="/"){%>
+			<li><a class="active leftradius" href="/">爱游船</a></li>
+		<%}else{%>
+			<li><a class="leftradius" href="/">爱游船</a></li>
+		<%}%>
+		<%if(parms[0]=="/boat" || parms[0]=="/boatDetail"){%>
+			<li><a class="active" href="/boat?p=0">游船游艇</a></li>
+		<%}else{%>
+			<li><a href="/boat?p=0">游船游艇</a></li>
+		<%}%>
+		<%if(parms[0]=="/charteredboat"){%>
+			<li><a class="active" href="/charteredboat?p=0">包船服务</a></li>
+		<%}else{%>
+			<li><a href="/charteredboat?p=0">包船服务</a></li>
+		<%}%>
+		<%if(parms[0]=="/services"){%>
+			<li><a class="active" href="/services?p=0">配套服务</a></li>
+		<%}else{%>
+			<li><a href="/services?p=0">配套服务</a></li>
+		<%}%>
+	</ul>
+</div>

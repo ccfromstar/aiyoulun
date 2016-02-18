@@ -1,0 +1,93 @@
+<!--业务逻辑-->
+<%
+	var CONSTANT1 = "水上烟花,宴会策划,景点门票".split(",");
+	var parms = url.split("?p=");
+%>
+<!--页面逻辑-->
+<% include header %>
+<% include headeradvstatic %>
+<div class="context">
+	<% include menu %>
+</div>
+<div class="contextpage">
+	<div class="pageleft">
+		<ul>
+	      <%for(var i=0;i<3;i++){%>
+	        <%if(parms[1]==i){%>
+	          <li><a class="active"><%=CONSTANT1[i]%></a></li>
+	        <%}else{%>
+	          <li><a href="/services?p=<%=i%>"><%=CONSTANT1[i]%></a></li>
+	        <%}%>
+	      <%}%>
+	    </ul>
+	</div>
+	<div  class="pageright">
+		<%for(var i=0;i<3;i++){%>
+			<%if(parms[1]==2 && i ==2){%>
+				<%for(var j in rows1){%>
+					<div class="sitediv">
+						<div class="sitepic"><img src="/img/pic/<%=rows1[j].image%>.jpg"></div>
+						<div class="siteright">
+							<div class="site_title"><%=rows1[j].name%></div>
+							<div class="site_main">
+								<%-rows1[j].Brief%>
+							</div>
+							<div class="site_footer">
+								<div class="price1">门票价：￥<%=rows1[j].Originalprice%></div>
+								<div class="price2">优惠价：￥<%=rows1[j].Favorableprice%></div>
+							</div>
+						</div>
+					</div>
+				<%}%>
+			<%}else{%>
+				<%if(parms[1]==i){%>
+				<div class="content_title_underline">
+					<div class="ct_left"><%=CONSTANT1[i]%></div>
+					<div class="ct_right">价格：<span class="price"><%=rows2[i].price%></span></div>
+				</div>
+				<p class="content_main">
+					<%-rows2[i].Brief%>
+				</p>
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+   					<!-- 轮播（Carousel）指标 -->
+   					<ol class="carousel-indicators">
+      					<%var _cla;
+      					var picarr = (rows2[i].image).split(";");
+        				for(var j=0;j<picarr.length;j++){
+             				_cla = j==0?"active":"";
+      					%>
+        					<li data-target="#myCarousel" data-slide-to="<%=j%>" class="<%=_cla%>"></li>
+      					<%}%>
+   					</ol>   
+   					<!-- 轮播（Carousel）项目 -->
+   					<div class="carousel-inner">
+        			<%
+            			for(var j=0;j<picarr.length;j++){
+              				var _cla = "item";
+              				if(j==0){
+                  				_cla = "item active";
+              				}else{
+                  				_cla = "item";
+              			}
+        			%>  
+            		<div class="<%=_cla%>">
+                		<img src="/img/pic/<%=picarr[j]%>.jpg" class="caroupage" alt="" />
+            		</div>
+        			<%
+            		}
+        			%>
+   					</div>
+   					<!-- 轮播（Carousel）导航 -->
+   					<a class="carousel-control left" href="#myCarousel" 
+      					data-slide="prev"><img class="arrowpage" src="/img/arrow-left.gif" /></a>
+   					<a class="carousel-control right" href="#myCarousel" 
+      					data-slide="next"><img class="arrowpage" src="/img/arrow-right.gif" /></a>
+					</div>
+					<%}%>
+			<%}%>
+		<%}%>
+	</div>
+	<div class="clearboth"></div>
+</div>
+<% include recommendation %>
+<% include footer %>

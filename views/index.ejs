@@ -1,0 +1,54 @@
+<!--业务逻辑-->
+<%
+	var CONSTANT1 = "游船婚庆,商务会议,餐饮宴会,私人游艇".split(",");
+%>
+<!--页面逻辑-->
+<% include header %>
+<% include headeradv %>
+<div class="context">
+	<% include menu %>
+</div>
+<div class="seccontext">
+<div class="contextw">
+	<%for(var i in rows1){
+		var arrimg = (rows1[i].image).split(";");
+	%>
+			<div class="fundiv" onclick="window.location='/charteredboat?p=<%=i%>';">
+				<img class="attrimg" src="/img/pic/<%=arrimg[0]%>.jpg"></img>
+				<div class="fundivtitle"><%=CONSTANT1[i]%></div>
+			</div>
+	<%}%>
+</div>
+</div>
+<div class="contexthome">
+	<div class="homeleft">
+		<div>
+			<div class="lft"><img src="/img/ship.png" class="icon" />游船推荐</div>
+			<div class="more" onclick="window.location='/boat?p=0'">MORE</div>
+			<div class="clearboth"></div>
+		</div>
+		<%for(var i in rows2){
+			if(i<6){
+				var arrimg = (rows2[i].image).split(";");
+		%>
+			<div class="shipdiv" onclick="window.location='/boatDetail?p=<%=rows2[i].id%>'">
+				<img class="attrimg" src="/img/pic/<%=arrimg[0]%>.jpg"></img>
+				<div class="shipdivtitle">
+					<div class="shipleft"><%=rows2[i].txtShipName%></div>
+					<div class="shipright">¥<%=rows2[i].price==0?"-":rows2[i].price%>/小时</div>
+				</div>	
+			</div>
+		<%	}
+		}%>
+	</div>
+	<div  class="homeright">
+		<div>
+			<div class="rit"><img src="/img/info.png" class="icon" />旅游工具箱 TRAVEL KIT</div>
+		</div>
+		<div class="weatherdiv">
+			<iframe width="130" scrolling="no" height="120" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=4&bdc=%23&icon=1&wind=1&num=6"></iframe>
+		</div>
+	</div>
+	<div class="clearboth"></div>
+</div>
+<% include footer %>

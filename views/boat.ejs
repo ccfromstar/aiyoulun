@@ -1,0 +1,52 @@
+<!--业务逻辑-->
+<%
+	var CONSTANT1 = "游船租赁,游艇租赁".split(",");
+	var parms = url.split("?p=");
+  var class1,class2,class3,class4,m1,m2,fcolor1,fcolor2,fcolor3,fcolor4;
+  m1 = m2 = "menuleft";
+  class1 = class3 = "tree1_gury";
+  class2 = class4 = "tree2_gury";
+  fcolor1 = fcolor2 = fcolor3 = fcolor4 = "seat_gury";
+  if(parms[1]==0 || parms[1]==1){
+    m1 = "menuleftactive";class1 = "tree1_red";class2 = "tree2_red";
+  }
+  if(parms[1]==2 || parms[1]==3){
+    m2 = "menuleftactive";class3 = "tree1_red";class4 = "tree2_red";
+  }
+  if(parms[1]==0){fcolor1 = "seat_red";}
+  if(parms[1]==1){fcolor2 = "seat_red";}
+  if(parms[1]==2){fcolor3 = "seat_red";}
+  if(parms[1]==3){fcolor4 = "seat_red";}
+%>
+<!--页面逻辑-->
+<% include header %>
+<% include headeradvstatic %>
+<div class="context">
+	<% include menu %>
+</div>
+<div class="contextpage">
+	<div class="pageleft">
+		<div class="<%=m1%>"><%=CONSTANT1[0]%></div>
+      <div class="<%=class1%>" onclick="toPage('/boat?p=0');"><div class="<%=fcolor1%>">1-200客位</div></div>
+      <div class="<%=class2%>" onclick="toPage('/boat?p=1');"><div class="<%=fcolor2%>">200-1000客位</div></div>
+    <div class="<%=m2%>"><%=CONSTANT1[1]%></div>
+      <div class="<%=class3%>" onclick="toPage('/boat?p=2');"><div class="<%=fcolor3%>">1-50客位</div></div>
+      <div class="<%=class4%>" onclick="toPage('/boat?p=3');"><div class="<%=fcolor4%>">50-200客位</div></div>
+	</div>
+	<div class="pageright">
+    <%for(var i in rows1){
+          var arrimg = (rows1[i].image).split(";");
+    %>
+        <div class="shipdiv" onclick="window.location='/boatDetail?p=<%=rows1[i].id%>'">
+          <img class="attrimg" src="/img/pic/<%=arrimg[0]%>.jpg"></img>
+          <div class="shipdivtitle">
+            <div class="shipleft"><%=rows1[i].txtShipName%></div>
+            <div class="shipright">¥<%=rows1[i].price==0?"-":rows1[i].price%>/小时</div>
+          </div>  
+        </div>
+    <%}%>
+	</div>
+	<div class="clearboth"></div>
+</div>
+<% include recommendation %>
+<% include footer %>
